@@ -201,13 +201,13 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   //all->sp_bash    = new_Space("bash");
                     Env envi;
                     char m[10000];// la chaine qu on va afficher
-                    FILE *output = fopen("TEST/out","w+");
+                    FILE *output = fopen("lib/include/TEST/out","w+");
                    Tokens *toks = Lexer(bashText);     
                    Trees    *trs   = Parser(toks);
                    Evalutor(trs,&envi,m,output);  
                    fclose(output);
-                   strcpy(m,readFromFile(m,"TEST/out"));
-  
+                   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
+                  
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
