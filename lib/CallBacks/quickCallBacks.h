@@ -179,7 +179,7 @@ void upload_clicked(GtkWidget *widget, gpointer data) {
 //  BOUTON RUN
 void run_clicked(GtkWidget *widget, gpointer data) {
   clock_t begin_timeout = clock();
- 
+
   All *all = data;
 
   GtkTextBuffer *buffer1=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->editor));
@@ -194,6 +194,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   gchar *bashText = gtk_text_buffer_get_text(buffer1,&start,&end,FALSE);
   
   //  Recuperation de la commande
+<<<<<<< HEAD
   //Commande *cmd = Space_compile(all->sp_bash,bashText);
      
   //  Réinitialiser le space bash
@@ -208,6 +209,20 @@ void run_clicked(GtkWidget *widget, gpointer data) {
                    fclose(output);
                    strcpy(m,readFromFile(m,"lib/include/TEST/out"));
                     
+=======
+
+
+  Env envi;
+  char m[10000];// la chaine qu on va afficher
+  FILE *output = fopen("lib/include/TEST/out","w+");
+  Tokens *toks = Lexer(bashText);
+  Trees    *trs   = Parser(toks);
+  Evalutor(trs,&envi,m,output);
+  fclose(output);
+  strcpy(m,readFromFile(m,"lib/include/TEST/out"));
+  
+
+>>>>>>> 59b00284db1d7c54d94a77bb7af65e8071351f49
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
@@ -225,15 +240,14 @@ void run_clicked(GtkWidget *widget, gpointer data) {
 
   //  Ecrire l'heure et date d'execution
   iter = TextView_get_iter_end(all->output_comp);
-  //TextView_insert_text(all->output_comp,iter, dateHeure, "green_fg");
+  TextView_insert_text(all->output_comp,iter, dateHeure, "green_fg");
   
-
   //  Afficher les warnings en orange
   //iter = TextView_get_iter_end(all->output_comp);
   //TextView_insert_text(all->output_comp,iter,cmd->warnings , "orange_fg");
   //  Afficher la sortie standard en couleur standard  
-  iter = TextView_get_iter_end(m);
-  //TextView_insert_text(all->output_comp,iter,cmd->output , NULL);
+  iter = TextView_get_iter_end(all->output_comp);
+  TextView_insert_text(all->output_comp,iter,m , NULL);
   //  Afficher les erreurs en rouge
   //iter = TextView_get_iter_end(all->output_comp);
   //TextView_insert_text(all->output_comp,iter,cmd->errors , "red_fg");
