@@ -195,6 +195,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   
   //  Recuperation de la commande
 
+
   Env envi;
   char m[10000];// la chaine qu on va afficher
   FILE *output = fopen("lib/include/TEST/out","w+");
@@ -204,6 +205,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   fclose(output);
   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
   
+
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
