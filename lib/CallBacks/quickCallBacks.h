@@ -194,8 +194,6 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   gchar *bashText = gtk_text_buffer_get_text(buffer1,&start,&end,FALSE);
   
   //  Recuperation de la commande
-
-
   Env envi;
   char m[10000];// la chaine qu on va afficher
   FILE *output = fopen("lib/include/TEST/out","w+");
@@ -204,7 +202,6 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   Evalutor(trs,&envi,m,output);
   fclose(output);
   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
-  
 
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));

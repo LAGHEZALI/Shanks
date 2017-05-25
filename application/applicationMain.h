@@ -13,6 +13,7 @@ void ApplicationMain()
     All *all=(All*)malloc(sizeof(All));
     all->footer = new_Box(HORIZENTAL, 0, FALSE);
     all->lnCol = new_StatusBar();
+    
 
     //  Le programme va débuter avec le mode Interpréteur et le thème Sombre et pas de cmd en cours
     all->isDark=TRUE;
