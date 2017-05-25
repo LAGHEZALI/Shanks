@@ -19,7 +19,14 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
             if(tmp->this->tok == NAME && 
                     (tmp->svt == NULL || (strcmp(tmp->svt->this->value,"(") !=0 && strcmp(tmp->svt->this->value,".") !=0)  
               )  )// cas of variable
-                 {strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
+                 {
+                     if(estNombre(AllVariable_valeur(envi->allv,tmp->this->value)))
+                        strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
+                        else {
+                            strcat(tompon,"\"");
+                             strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
+                            strcat(tompon,"\"");
+                        }
                 
                  }
                  

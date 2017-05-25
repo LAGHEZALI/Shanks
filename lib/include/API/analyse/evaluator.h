@@ -23,16 +23,20 @@ Env  *gerer_declaration(Tokens *toks,Env *envi)
     tmp = tmp->svt;
     while(tmp)
     {
+        if(strcmp(tmp->this->value,";")==0)
+            break;
+        
         strcpy(name,tmp->this->value);
         tmp = tmp->svt;
         strcpy(vvv,"");
+        Tokens *ttt = NULL;
         if(tmp!=NULL && tmp->this->tok == EQUA)
         {
             tmp = tmp->svt;
             
             while(tmp!=NULL && strcmp(tmp->this->value,";")!=0 && strcmp(tmp->this->value,",")!=0)
             {
-                if(tmp->this->tok == NAME && 
+                /*if(tmp->this->tok == NAME && 
                     (tmp->svt == NULL || (strcmp(tmp->svt->this->value,"(") !=0 && strcmp(tmp->svt->this->value,".") !=0)  )
                         )// cas of variable
                     strcat(vvv,AllVariable_valeur(envi->allv,tmp->this->value));
@@ -51,13 +55,16 @@ Env  *gerer_declaration(Tokens *toks,Env *envi)
 
                 }
                 else 
-                    strcat(vvv,tmp->this->value);
+                    strcat(vvv,tmp->this->value);*/
+                
+                ttt = Tokens_Add(ttt,tmp->this->tok,tmp->this->value);
                 tmp = tmp->svt;
             }
             
             
         }//if
-        envi->allv = AllVariable_ajouter(envi->allv,new_Variable(type,name,calculerExpressionNv1(vvv,valeur)));
+        //envi->allv = AllVariable_ajouter(envi->allv,new_Variable(type,name,calculerExpressionNv1(vvv,valeur)));
+        envi->allv = AllVariable_ajouter(envi->allv,new_Variable(type,name,calculerExpressionNv0(ttt,envi,valeur,NULL)));;
         printf("declaration ---->%s=%s\n",name,AllVariable_valeur(envi->allv,name));
         if(tmp)
             tmp = tmp->svt;
