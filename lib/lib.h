@@ -1,6 +1,6 @@
 #include <string.h>
 #include <time.h>
-#include "include/inc.h"
+
 #include "SD/Structures.h"
 #include "SD/Taille.h"
 
@@ -45,7 +45,7 @@
 #include "Components/statusBar.h"
 #include "Components/Button.h"
 #include "Components/TextView.h"
-
+#include "include/inc.h"
 //  CallBacks
 #include "CallBacks/quickCallBacks.h"
 #include "CallBacks/rightBodyCallBacks.h"

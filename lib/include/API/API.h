@@ -3,18 +3,19 @@
 
 
 
-
+/*
 //  transforme chaine en format utf8
 char* utf8(char *chaine)
 {
     return(g_locale_to_utf8 (chaine,-1,0,0,0));
-}
-#include "SD1/Structures.h"
-#include "SD1/Taille.h" 
-#include "Prototypes.h"
+}*/
+
+//#include "SD1/Structures.h"
+//#include "SD1/Taille.h" 
+//#include "Prototypes.h"
 
 //  Containers
-
+/*
 #include "Containers/Container.h"
 #include "Containers/Box.h"
 #include "Containers/Grid.h"
@@ -41,7 +42,7 @@ char* utf8(char *chaine)
 #include "Components/CheckBox.h"
 #include "Components/Radio.h"
 
-
+*/
 #include "outils/outils.h"
 #include "implementationSD/implementationSD.h"
 #include "analyse/analyse.h"
