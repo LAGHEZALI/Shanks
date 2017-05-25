@@ -202,7 +202,6 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   Trees    *trs   = Parser(toks);
   Evalutor(trs,&envi,m,output);
   fclose(output);
-  strcpy(m,readFromFile(m,"lib/include/TEST/out"));
   char *azz = readFromFile("lib/include/TEST/out",azz);
   
   //  Nettoyer l'output
