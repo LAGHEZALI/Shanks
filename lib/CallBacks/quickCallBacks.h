@@ -194,6 +194,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   gchar *bashText = gtk_text_buffer_get_text(buffer1,&start,&end,FALSE);
   
   //  Recuperation de la commande
+
   Env envi;
   char m[10000];// la chaine qu on va afficher
   FILE *output = fopen("lib/include/TEST/out","w+");
@@ -202,7 +203,8 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   Evalutor(trs,&envi,m,output);
   fclose(output);
   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
-
+  char *azz = readFromFile("lib/include/TEST/out",azz);
+  
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
@@ -227,7 +229,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   //TextView_insert_text(all->output_comp,iter,cmd->warnings , "orange_fg");
   //  Afficher la sortie standard en couleur standard  
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter,m , NULL);
+  TextView_insert_text(all->output_comp,iter,azz , NULL);
   //  Afficher les erreurs en rouge
   //iter = TextView_get_iter_end(all->output_comp);
   //TextView_insert_text(all->output_comp,iter,cmd->errors , "red_fg");
