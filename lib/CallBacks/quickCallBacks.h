@@ -194,22 +194,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   gchar *bashText = gtk_text_buffer_get_text(buffer1,&start,&end,FALSE);
   
   //  Recuperation de la commande
-<<<<<<< HEAD
-  //Commande *cmd = Space_compile(all->sp_bash,bashText);
-     
-  //  Réinitialiser le space bash
-  //all->sp_bash  = Space_delete(all->sp_bash);
-  //all->sp_bash    = new_Space("bash");
-                    Env envi;
-                    char m[10000];// la chaine qu on va afficher
-                    FILE *output = fopen("lib/include/TEST/out","w+");
-                   Tokens *toks = Lexer(bashText);     
-                   Trees    *trs   = Parser(toks);
-                   Evalutor(trs,&envi,m,output);  
-                   fclose(output);
-                   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
-                    
-=======
+
 
 
   Env envi;
@@ -222,7 +207,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   strcpy(m,readFromFile(m,"lib/include/TEST/out"));
   
 
->>>>>>> 59b00284db1d7c54d94a77bb7af65e8071351f49
+
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
