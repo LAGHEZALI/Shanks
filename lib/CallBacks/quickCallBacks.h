@@ -207,7 +207,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
                    Evalutor(trs,&envi,m,output);  
                    fclose(output);
                    strcpy(m,readFromFile(m,"lib/include/TEST/out"));
-                  
+                    
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
   gtk_text_buffer_set_text(buffer2,"",-1);
