@@ -196,6 +196,8 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   //  Recuperation de la commande
 
   Env envi;
+  envi.allv = NULL;
+  envi.allf = NULL;
   char m[10000];// la chaine qu on va afficher
   FILE *output = fopen("lib/include/TEST/out","w+");
   Tokens *toks = Lexer(bashText);
