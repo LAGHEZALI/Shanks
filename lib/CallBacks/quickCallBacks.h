@@ -192,11 +192,13 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   gtk_text_iter_forward_to_end (&end);
 
   gchar *bashText = gtk_text_buffer_get_text(buffer1,&start,&end,FALSE);
+  
   //  Recuperation de la commande
-  Commande *cmd = Space_compile(all->sp_bash,bashText);
+  //Commande *cmd = Space_compile(all->sp_bash,bashText);
+  
   //  Réinitialiser le space bash
-  all->sp_bash  = Space_delete(all->sp_bash);
-  all->sp_bash    = new_Space("bash");
+  //all->sp_bash  = Space_delete(all->sp_bash);
+  //all->sp_bash    = new_Space("bash");
   
   //  Nettoyer l'output
   GtkTextBuffer *buffer2=gtk_text_view_get_buffer(GTK_TEXT_VIEW(all->output));
@@ -215,17 +217,17 @@ void run_clicked(GtkWidget *widget, gpointer data) {
 
   //  Ecrire l'heure et date d'execution
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter, dateHeure, "green_fg");
+  //TextView_insert_text(all->output_comp,iter, dateHeure, "green_fg");
   
   //  Afficher les warnings en orange
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter,cmd->warnings , "orange_fg");
+  //TextView_insert_text(all->output_comp,iter,cmd->warnings , "orange_fg");
   //  Afficher la sortie standard en couleur standard  
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter,cmd->output , NULL);
+  //TextView_insert_text(all->output_comp,iter,cmd->output , NULL);
   //  Afficher les erreurs en rouge
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter,cmd->errors , "red_fg");
+  //TextView_insert_text(all->output_comp,iter,cmd->errors , "red_fg");
 
   //  Recuperer le temps d'execution bash
   clock_t end_timeout = clock();

@@ -1,0 +1,39 @@
+var x = 10+5+(10 && 10),i=0,i1=0;
+print(x);
+var str = "salut tout le monde ;";
+print("hhhh\n");
+print(str);
+List p = new List();
+while(i<10)
+    i = i + 1;
+while(i1<15)
+{
+    i1 = i1+1;
+    print(i1);
+}
+if(i1 == 15)
+    print("reussi");
+if(i1 == i)
+{
+    print("egaux");
+}
+else
+{
+    print("nn egaux");
+}
+
+
+class Unclasse {
+    str x,str y;
+    function var Unclasse()
+        {
+            return x;
+        }
+
+}
+
+
+function  fonction1(str s)
+{
+    return s+" hello";
+}

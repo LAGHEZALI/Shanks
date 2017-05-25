@@ -229,24 +229,28 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                     all->cmd_encours = g_strconcat(all->cmd_encours, retourner_commande_non_complete(buffer), NULL);
                      //retourner la cmd saisie
                     g_print("\ncmd@complete> %s\n",all->cmd_encours);
-                    Commande *cmd =  Space_compile(all->sp_inter,all->cmd_encours);
+                    //Commande *cmd =  Space_compile(all->sp_inter,all->cmd_encours);
+
 
                     //  Affichage du resultat
-                    if( (int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
-                            (int)strlen(cmd->errors)!=0 )
+                    if( /*(int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
+                            (int)strlen(cmd->errors)!=0*/0 )
                     {
                         iter = TextView_get_iter_end(all->console_comp);
                         TextView_insert_text(all->console_comp,iter,"\n" , NULL);
 
-                            //  Afficher les warnings en orange
+                        //  Afficher les warnings en orange
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->warnings , "orange_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->warnings , "orange_fg");
+                        
                         //  Afficher la sortie standard en couleur standard  
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->output , "#0EAF47_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->output , "#0EAF47_fg");
+                        
                         //  Afficher les erreurs en rouge
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->errors , "red_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->errors , "red_fg");
+                        
                         //  preparer la nouvelle ligne
                         iter = TextView_get_iter_end(all->console_comp);
                         TextView_insert_text(all->console_comp,iter,"\nilisi@shanks:~# " , "#00B5FF_fg");
@@ -257,6 +261,7 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                     //  pas de cmd en cours maintenant
                     all->cmd_encours=NULL;
                 }
+
                 //  pas de cmd en cours
                 else
                 {
@@ -270,27 +275,30 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
 
                     //retourner la cmd saisie
                     g_print("\ncmd@complete> %s\n",retourner_commande(buffer));
-                    Commande *cmd =  Space_compile(all->sp_inter,retourner_commande(buffer));
+                    //Commande *cmd =  Space_compile(all->sp_inter,retourner_commande(buffer));
 
                     //  Affichage du resultat
-                    if( (int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
-                            (int)strlen(cmd->errors)!=0 )
+                    if( /* (int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
+                            (int)strlen(cmd->errors)!=0 */0)
                     {
                         iter = TextView_get_iter_end(all->console_comp);
                         TextView_insert_text(all->console_comp,iter,"\n" , NULL);
 
                             //  Afficher les warnings en orange
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->warnings , "orange_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->warnings , "orange_fg");
+                       
                         //  Afficher la sortie standard en couleur standard  
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->output , "#0EAF47_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->output , "#0EAF47_fg");
+                       
                         //  Afficher les erreurs en rouge
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,cmd->errors , "red_fg");
+                        //TextView_insert_text(all->console_comp,iter,cmd->errors , "red_fg");
+                        
                         //  preparer la nouvelle ligne
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,"ilisi@shanks:~# " , "#00B5FF_fg");
+                        //TextView_insert_text(all->console_comp,iter,"ilisi@shanks:~# " , "#00B5FF_fg");
                     }
                     else
                     //  preparer la nouvelle ligne

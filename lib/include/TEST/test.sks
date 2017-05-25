@@ -1,0 +1,9 @@
+Fenetre fen;
+Fenetre fen1;
+fen.creerFenetre("fenetre ",100,400);
+fen1.creerFenetre("fenetre 1",100,100);
+fen1.ajouterBoutton("new boutton",10,10);
+fen1.ajouterLabel("new label",20,20);
+fen1.montrer();
+
+var x = 1;

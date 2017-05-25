@@ -1,31 +1,30 @@
 
 
+        /*               
+        Cette fonction lit tour les truc dans un fichier et le mets
+        dans une chaine de caractere source
 
-
-//      Les prototypes
-char *readFromFile(char *s,const char *file);
-
-
-
-//      les implentations
-
-char *readFromFile(char *s,const char *file)
+            Entree : 
+                nomF le nom du fichier
+                source @de lachine ou on va inserer le contenu
+           */
+char *readFromFile(char *nomF,char *source)
 {
-      s = (char *)malloc(9000);
-     FILE *f = fopen(file,"r");
-     if(f == NULL)
-     {
-         printf("\n\t Probleme :Le fichier et introuvable ou il est utilises par un autre programme !\t");   
-         return NULL;
-     }
-     char c ;
-     int i=0;
-     while((c = fgetc(f))!=EOF)
-     {
-         s[i] = c;
-         i++;
-     }
-     s[i] = '\0';
-     fclose(f);
-     return s;
-}//eof
+    char c[2] = {' ','\0'};//le caractere de lecture
+    int taille = 2;//la taille de la chaine
+    FILE *f = fopen(nomF,"r");
+    if(f == NULL)
+        return NULL;
+    source =(char *) malloc(sizeof(char)*2);//allocation
+    strcpy(source,"");//initialisation
+
+    while((c[0]=fgetc(f))!=EOF)//lecture caractere par caractere
+    {
+        strcat(source,c);//concatenation de la chaine avec le nouveau caractere
+        taille = taille +1;//agrandir la taille
+        source = (char *)realloc(source,taille);
+    }//fin de la boucle
+    fclose(f);//fermeture du fichier
+    return source;
+}//fin de la fonction
+

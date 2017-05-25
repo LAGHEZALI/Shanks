@@ -19,10 +19,6 @@ void ApplicationMain()
     all->isBash=FALSE;
     all->cmd_encours=NULL;
 
-    //  Initialisation des spaces
-    all->sp_inter   = new_Space("inter");
-    all->sp_bash    = new_Space("bash");
-
     //  Notre fenetre
     Fenetre *f = new_Fenetre("Shanks",NORMAL,new_Taille(500,500),P_CENTER);
     all->f=f;
