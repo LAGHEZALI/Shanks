@@ -15,6 +15,9 @@ void ApplicationMain()
     all->lnCol = new_StatusBar();
     
 
+    global.allv = NULL;
+    global.allf = NULL;
+
     //  Le programme va débuter avec le mode Interpréteur et le thème Sombre et pas de cmd en cours
     all->isDark=TRUE;
     all->isBash=FALSE;

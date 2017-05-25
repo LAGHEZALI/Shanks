@@ -47,6 +47,40 @@ Fenetre *new_Fenetre(const char *titre,int type,Taille *t,int position)
     return (Fenetre *)f;
 }//Fin de la fonction
 
+
+void quitter(GtkWidget *widget, gpointer data) {
+    gtk_widget_destroy (widget);
+}
+Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
+{
+
+    Fenetre *f = (Fenetre *)malloc(sizeof(Fenetre));
+    f->container = NULL;
+    f->t = NULL;
+    f->titre = (char *)malloc(sizeof(char)*15);
+    if(!f || !f->titre)
+    {
+        printf("Erreur ! Allocation de memoire Fenetre \n");
+        exit(-1);
+    }
+
+    if(type == NORMAL)
+        f->this = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        
+    else 
+        f->this = gtk_window_new(GTK_WINDOW_POPUP);
+        
+    Container *c = new_Box(VERTICAL,0,FALSE);
+    f = Fenetre_setContainer(f,c);
+    f = Fenetre_setTaille(f,t);
+    f = Fenetre_setTitre(f,titre);
+    f = Fenetre_setPosition(f,position);
+
+    g_signal_connect (f->this, "destroy",G_CALLBACK (quitter), NULL);
+
+    return (Fenetre *)f;
+}//Fin de la fonction
+
 /****************************************************************************
  *							Fonction setVisible								*
  ****************************************************************************
