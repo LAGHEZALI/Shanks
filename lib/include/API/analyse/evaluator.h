@@ -90,12 +90,13 @@ const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                 {
                      printf("affecation---> %s \n",calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
                      envi->allv = AllVariable_modifier(envi->allv,tmp1->this->value,calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
-                     
+                   
                 }
                 else 
-                    printf("affichage---> %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
+                   { printf("affichage---> %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
+                       fprintf(output,"%s\n",calculerExpressionNv0(tmp->toks,envi,res,output));}
                     /*affichage*/
-                    fprintf(output,"%s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
+                   
                     /*affichage*/
         }//fin if
 
