@@ -60,9 +60,9 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
 {
      if(strcmp(name,"creerFenetre") == 0 && n == 1)
     {
-        v->val->fen = new_Fenetre(calculerExpressionNv1(p->valeur,p->valeur),NORMAL,new_Taille(100,155),P_CENTER);
+        v->val->fen = new_Fenetre_shanks(calculerExpressionNv1(p->valeur,p->valeur),NORMAL,new_Taille(100,155),P_CENTER);
         Fenetre_setContainer(v->val->fen,new_Fixed());
-        Fenetre_agrandir(v->val->fen);
+
         return "\"vous avez cree une fenetre . \"";
     }
     else if(strcmp(name,"creerFenetre") == 0 && n == 3)

@@ -20,7 +20,6 @@
 //  dialogs 
 #include "dialog/alerts.h"
 #include "dialog/dialogs.h"
-#include "dialog/interfaceDialogs.h"
 #include "dialog/menuDialogs.h"
 
 
@@ -55,3 +54,5 @@
 
 //  Accelerators
 #include "accelerators.h"
+Env global;
+#include "dialog/interfaceDialogs.h"

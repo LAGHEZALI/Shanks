@@ -1,4 +1,4 @@
-Component *new_Entry(const char *placeholder)
+Component* new_Entry(const char *placeholder)
 {
     Component *cp = new_Component();
     cp->type = ENTRY;
