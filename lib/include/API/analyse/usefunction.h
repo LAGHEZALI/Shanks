@@ -61,6 +61,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
      if(strcmp(name,"creerFenetre") == 0 && n == 1)
     {
         v->val->fen = new_Fenetre(calculerExpressionNv1(p->valeur,p->valeur),NORMAL,new_Taille(100,155),P_CENTER);
+        Fenetre_setContainer(v->val->fen,new_Fixed());
         Fenetre_agrandir(v->val->fen);
         return "\"vous avez cree une fenetre . \"";
     }
@@ -70,7 +71,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
         int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
         int  y = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
        v->val->fen = new_Fenetre(calculerExpressionNv1(p->valeur,tm),NORMAL,new_Taille(x,y),P_CENTER);
-       
+       Fenetre_setContainer(v->val->fen,new_Fixed());
 
       return "\"vous avez cree une fenetre .\" ";
     }
