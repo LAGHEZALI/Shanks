@@ -204,7 +204,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   Trees    *trs   = Parser(toks);
   Evalutor(trs,&envi,m,output);
   fclose(output);
-  strcpy(m,readFromFile(m,"lib/include/TEST/out"));
+  char *azz = readFromFile("lib/include/TEST/out",azz);
   
 
 
@@ -232,7 +232,7 @@ void run_clicked(GtkWidget *widget, gpointer data) {
   //TextView_insert_text(all->output_comp,iter,cmd->warnings , "orange_fg");
   //  Afficher la sortie standard en couleur standard  
   iter = TextView_get_iter_end(all->output_comp);
-  TextView_insert_text(all->output_comp,iter,m , NULL);
+  TextView_insert_text(all->output_comp,iter,azz , NULL);
   //  Afficher les erreurs en rouge
   //iter = TextView_get_iter_end(all->output_comp);
   //TextView_insert_text(all->output_comp,iter,cmd->errors , "red_fg");

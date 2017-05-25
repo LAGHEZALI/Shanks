@@ -9,7 +9,7 @@
                 source @de lachine ou on va inserer le contenu
            */
 char *readFromFile(char *nomF,char *source)
-{
+{   
     char c[2] = {' ','\0'};//le caractere de lecture
     int taille = 2;//la taille de la chaine
     FILE *f = fopen(nomF,"r");
