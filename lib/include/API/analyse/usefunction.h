@@ -2,7 +2,7 @@
 
 
 
-const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output);
+Env *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output);
 
 
 /* utiliser une fonction */
@@ -36,7 +36,7 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
      envi1.allv = myvr;
      envi1.allf = envi->allf;
      char mm[10000]="";
-     strcpy(bakibi,Evalutor(tres,&envi1,mm,output));
+   Evalutor(tres,envi,bakibi,output);
     return bakibi;
 }// fin de la fonction 
 
