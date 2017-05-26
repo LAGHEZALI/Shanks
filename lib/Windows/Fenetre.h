@@ -50,6 +50,7 @@ Fenetre *new_Fenetre(const char *titre,int type,Taille *t,int position)
 
 void quitter(GtkWidget *widget, gpointer data) {
     gtk_widget_destroy (widget);
+    g_print("quit!!!");
 }
 Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
 {
