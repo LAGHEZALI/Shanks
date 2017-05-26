@@ -149,7 +149,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                                 tmp1 = tmp1->svt;
                             }
                             Trees *trees = Parser(execution);
-                            envi  = Evalutor(trees,envi,bakibi,output);
+                             envi =  Evalutor(trees,envi,bakibi,output);
                         }
                         else 
                         {
@@ -161,7 +161,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                             }
                             Trees *trees = Parser(execution);
                           
-                            envi = Evalutor(trees,envi,bakibi,output);
+                           envi =  Evalutor(trees,envi,bakibi,output);
                           
                           
                         }
@@ -205,7 +205,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                                 tmp1 = tmp1->svt;
                             }
                             Trees *trees = Parser(execution);
-                           Evalutor(trees,envi,bakibi,output);
+                          envi =  Evalutor(trees,envi,bakibi,output);
                         }
                         else 
                         {
@@ -290,7 +290,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                      etat_condition = 0;//ca veut dire que la condtion est executer
                     if(strcmp(tmp1->this->value,"{") == 0)
                         {   
-                            tmp1 = tmp1->svt;
+                            tmp1 = tmp1->svt;//  -----> apres {
                             while(tmp1)
                             {
                                 if(strcmp(tmp1->this->value,"}") == 0)
@@ -312,7 +312,6 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                             }
                             // execution du coeur de la boucle 
                             Trees *trees = Parser(execution);
-                          
                             envi = Evalutor(trees,envi,bakibi,output);
                           
                           

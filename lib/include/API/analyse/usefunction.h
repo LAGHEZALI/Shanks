@@ -58,7 +58,10 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
 
 // les methode d une fenetre
 char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,Env *envi,char *bakibi)
-{
+{ 
+
+    
+    int e = 0;
      if(strcmp(name,"creerFenetre") == 0 && n == 1)
     {
         v->val->fen = new_Fenetre_shanks(calculerExpressionNv1(p->valeur,p->valeur),NORMAL,new_Taille(100,155),P_CENTER);

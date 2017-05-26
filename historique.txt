@@ -1,20 +1,20 @@
-19
-20
-20
-1+1
-1
-+
-1
-var x;x=1;x
-var ilisi;
-var
-1+3 2+4
-var z=1;
-var z=1;
-z=2;
-z;
 var ilisi;
 z=2;
 z ;
 var z=2;
 z;
+Fenetre fen1;
+fen1.creerFenetre("fenetre 1",500,200);
+fen1.montrer();
+fen1.bye();
+fen1.ajouterBoutton("new boutton",100,100);
+fen1.montrer();
+fen1.ajouterLabel("new label",200,200);
+fen1.actualiser();
+Fenetre fen2;
+fen2.creerFenetre("sdfsdf");
+fen2.montrer();
+fen2.ajouterBoutton("sdfsd",100,300);
+fen2.actualiser();
+fen2.bye();
+fen1.bye();
