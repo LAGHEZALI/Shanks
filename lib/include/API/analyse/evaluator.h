@@ -280,13 +280,13 @@ const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
             while(tmp1) // lire la dondition 
             { 
                 if(strcmp(tmp1->this->value,")") == 0)
-                  {  condition = Tokens_Add(condition,tmp1->this->tok,tmp1->this->value); break;}
+                  {  condition = Tokens_Add(condition,tmp1->this->tok,tmp1->this->value); break;}//fin  if
                      condition = Tokens_Add(condition,tmp1->this->tok,tmp1->this->value);
                 tmp1 = tmp1->svt;
             }
             tmp1 = tmp1->svt;
             Tokens *reap=tmp1;
-            char res[100]="";
+            char res[1000]="";
             strcpy(res,calculerExpressionNv0(condition,envi,res,output));
             strcat(res,">=1");
             strcpy(res,calculerExpressionNv1(res,res));

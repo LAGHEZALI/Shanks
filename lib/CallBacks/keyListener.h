@@ -214,14 +214,6 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
             //si on fait un retour chariot
             else if(g_strcmp0(key_name, "Return")==0 || key_code==65421)
             {   
-                char m[10000];
-                FILE *output = fopen("lib/include/TEST/out","w+");
-                Tokens *toks = Lexer(retourner_commande(buffer));
-                Trees    *trs   = Parser(toks);
-                Evalutor(trs,&global,m,output);
-                fclose(output);
-                char *azz= readFromFile("lib/include/TEST/out",azz);
-
                 gtk_text_view_set_editable (GTK_TEXT_VIEW(all->console),FALSE);
                 //  si il y a une cmd en cours 
                 if(all->cmd_encours)
@@ -238,6 +230,14 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                      //retourner la cmd saisie
                     g_print("\ncmd@complete> %s\n",all->cmd_encours);
 
+                    char m[10000];
+                    FILE *output = fopen("lib/include/TEST/out","w+");
+                    Tokens *toks = Lexer(all->cmd_encours);
+                    Trees    *trs   = Parser(toks);
+                    Evalutor(trs,&global,m,output);
+                    fclose(output);
+                    char *azz = readFromFile("lib/include/TEST/out",azz);
+                    
                     //  Affichage du resultat
                     if( /*(int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
                             (int)strlen(cmd->errors)!=0*/1==1 )
@@ -280,7 +280,14 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                     }
 
                     //retourner la cmd saisie
-                    g_print("\ncmd@complete> %s\n",retourner_commande(buffer));
+                    g_print("\ncmd@complete> %s\n",retourner_commande(buffer)); 
+                    char m[10000];
+                    FILE *output = fopen("lib/include/TEST/out","w+");
+                    Tokens *toks = Lexer(retourner_commande(buffer));
+                    Trees    *trs   = Parser(toks);
+                    Evalutor(trs,&global,m,output);
+                    fclose(output);
+                    char *azz1 = readFromFile("lib/include/TEST/out",azz1);
                    
                     //  Affichage du resultat
                     if( /* (int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
@@ -295,7 +302,7 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                        
                         //  Afficher la sortie standard en couleur standard  
                         iter = TextView_get_iter_end(all->console_comp);
-                        TextView_insert_text(all->console_comp,iter,azz, "#0EAF47_fg");
+                        TextView_insert_text(all->console_comp,iter,azz1, "#0EAF47_fg");
                        
                         //  Afficher les erreurs en rouge
                         //iter = TextView_get_iter_end(all->console_comp);
