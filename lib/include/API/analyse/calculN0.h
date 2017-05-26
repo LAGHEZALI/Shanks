@@ -99,25 +99,26 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                     
                      if(strcmp(tmp->this->value,")")!=0)
                     while( tmp)
-                    {   
+                    {     
                         if(strcmp(tmp->this->value,";")==0)
                             break;
                         if( strcmp(tmp->this->value,",")==0)
-                        {
+                        {   
                             p = Parametre_ajouter(p,calculerExpressionNv0( tks ,envi, resultat,output));
                             free(tks);
                             tks = NULL;
                              nbr++;
                         }
                         else if(strcmp(tmp->this->value,")") == 0)
-                        {
+                        {   
                              if(e !=0) nbr++;
                             p = Parametre_ajouter(p,calculerExpressionNv0( tks ,envi, resultat,output));
+                            printf("---------------------------->%s",calculerExpressionNv0( tks ,envi, resultat,output));
                             if(tks)
                                 free(tks);
                             tks = NULL;
-                            tmp = tmp->svt;
-                            
+                            if(tmp)
+                                tmp = tmp->svt;
                         }
                         else
                             {tks = Tokens_Add(tks,tmp->this->tok,tmp->this->value);}
@@ -125,13 +126,14 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                                 tmp = tmp->svt;
                         e++;
                   }//fin while
-                    printf("--->%s %d \n",nomF,nbr);
+                    printf("---> %s %s %d \n",nameV,nomF,nbr);
                     strcat(tompon,Methode_utiliser(AllVariable_trouve(envi->allv,nameV),nomF,nbr,p,envi->allf,envi,tompon));
                     // on est ici à la fin de la fonction 
-                    
+                    printf("---> %s %s %d \n",nameV,nomF,nbr);
              }//end if method
              else 
                 {strcat(tompon,tmp->this->value);}
+                if(tmp)
             tmp = tmp->svt; 
     }
 
