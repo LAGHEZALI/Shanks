@@ -45,6 +45,8 @@
 #include "Components/Button.h"
 #include "Components/TextView.h"
 #include "include/inc.h"
+
+Env global;
 //  CallBacks
 #include "CallBacks/quickCallBacks.h"
 #include "CallBacks/rightBodyCallBacks.h"
@@ -54,5 +56,5 @@
 
 //  Accelerators
 #include "accelerators.h"
-Env global;
+
 #include "dialog/interfaceDialogs.h"
