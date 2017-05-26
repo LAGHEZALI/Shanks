@@ -178,6 +178,84 @@ char *AllFonction_utiliser(AllFonction *allf,char *name,int n,Parametre *p,Env *
             return Fonction_utiliser(tmp->fct,n,p,allf,envi,bakibi,output);
         tmp = tmp->svt ;
     }
+    
+    if(strcmp(name,"historique") == 0 &&  n == 0)
+    {
+        FILE *file;
+        
+        strcpy(bakibi,"\"");
+        file = fopen("historique.txt", "r");
+
+        int i=0;        
+        gchar line[256];
+
+        while (fgets(line, sizeof(line), file))
+        {
+            sprintf(bakibi , "%s %d -- %s \\n",bakibi,++i,line);
+            printf( "%s %d -- %s \\n",bakibi,i,line);
+        }
+        strcat(bakibi,"\"");
+        fclose(file);
+       // return bakibi;
+
+    }
+    else  if(strcmp(name,"historique") == 0 &&  n == 1)
+    {
+        FILE *file;
+        int x = atoi(calculerExpressionNv1(p->valeur,bakibi));
+        strcpy(bakibi,"\"");
+        file = fopen("historique.txt", "r");
+
+        int i=0;        
+        gchar line[256];
+
+        while (fgets(line, sizeof(line), file))
+        {
+            ++i;
+          
+                if(i == x)
+                {
+                     sprintf(bakibi,"\\t   %s \\n",line);
+                }
+        }
+        strcat(bakibi,"\"");
+        fclose(file);
+        return "\"le rang historique est non valide .\"";
+
+    }
+    else  if(strcmp(name,"executerHisto") == 0 &&  n == 1)
+        {
+            FILE *file;
+            int x = atoi(calculerExpressionNv1(p->valeur,bakibi));
+            strcpy(bakibi,"\"");
+            file = fopen("historique.txt", "r");
+
+            int i=0;        
+            gchar line[256];
+
+            while (fgets(line, sizeof(line), file))
+            {
+                ++i;
+            
+                    if(i == x)
+                    {
+                        
+
+                          FILE *output = fopen("lib/include/TEST/out","w+");
+                        Tokens *toks = Lexer(line);
+                        Trees    *trs   = Parser(toks);
+                        Evalutor(trs,&global,bakibi,output);
+                        fclose(output);
+                        char *azz = readFromFile("lib/include/TEST/out",azz);
+
+                        sprintf(bakibi,"\\t   %s \\n",azz);
+                    }
+            }
+            strcat(bakibi,"\"");
+            fclose(file);
+            return "\"le rang historique est non valide .\"";
+
+        }
 
     return " ";
 }//fin de la fonction

@@ -284,6 +284,7 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                     char m[10000];
                     FILE *output = fopen("lib/include/TEST/out","w+");
                     Tokens *toks = Lexer(retourner_commande(buffer));
+                    
                     Trees    *trs   = Parser(toks);
                     Evalutor(trs,&global,m,output);
                     fclose(output);
