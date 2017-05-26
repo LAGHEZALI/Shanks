@@ -44,5 +44,6 @@ char* utf8(char *chaine)
 
 
 #include "outils/outils.h"
+
 #include "implementationSD/implementationSD.h"
 #include "analyse/analyse.h"

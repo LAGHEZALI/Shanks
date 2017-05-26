@@ -46,7 +46,7 @@
 #include "Components/TextView.h"
 #include "include/inc.h"
 
-Env global;
+
 //  CallBacks
 #include "CallBacks/quickCallBacks.h"
 #include "CallBacks/rightBodyCallBacks.h"
