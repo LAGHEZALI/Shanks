@@ -94,13 +94,16 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
             char res[1000];
                 Tokens *tmp1= tmp->toks;
                 if(tmp1->this->tok == NAME && tmp1->svt && tmp1->svt->this->tok == EQUA) // le cas d affectation
-                {
+                {   
                      printf("affecation---> %s \n",calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
+                     strcpy(res,"");
                      envi->allv = AllVariable_modifier(envi->allv,tmp1->this->value,calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
                    
                 }
                 else 
                    { 
+                       strcpy(res,"");
+                       printf(" %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
                        fprintf(output," %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));}
                     /*affichage*/
                    
@@ -278,14 +281,17 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                      condition = Tokens_Add(condition,tmp1->this->tok,tmp1->this->value);
                 tmp1 = tmp1->svt;
             }
+            
             tmp1 = tmp1->svt;
             Tokens *reap=tmp1;
             char res[1000]="";
             strcpy(res,calculerExpressionNv0(condition,envi,res,output));
             strcat(res,">=1");
             strcpy(res,calculerExpressionNv1(res,res));
+            
             while(strcmp(res,"1") == 0)
                 {    
+                    printf("condition : %s --->\n",res);
                     tmp1 = reap;
                      etat_condition = 0;//ca veut dire que la condtion est executer
                     if(strcmp(tmp1->this->value,"{") == 0)
@@ -317,10 +323,12 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                           
                         }
                         //reprendre la boucle
-                        strcpy(res,"");
-                         strcpy(res,calculerExpressionNv0(condition,envi,res,output));
-                        strcat(res,">=1");
-                        strcpy(res,calculerExpressionNv1(res,res));
+                        char xxx[1000];
+                        strcpy(xxx,"");strcpy(res,"");
+                         strcpy(xxx,calculerExpressionNv0(condition,envi,res,output));
+                        strcat(xxx," == 1");
+                        char vvv[1000];strcpy(vvv,"");strcpy(res,"");
+                        strcpy(res,calculerExpressionNv1(xxx,vvv));
                 }
 
          }// fin  boucle

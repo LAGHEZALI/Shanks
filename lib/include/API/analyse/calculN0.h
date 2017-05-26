@@ -12,7 +12,6 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
     {      
         if((strcmp(tmp->this->value,";")==0))
             {
-
                 tmp = tmp->svt;
                 if(!tmp) break;
             }
@@ -26,11 +25,14 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
 
                         /* fin verification*/
                      if(estNombre(AllVariable_valeur(envi->allv,tmp->this->value)))
-                        strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
+                        {   
+                            float f = atof(AllVariable_valeur(envi->allv,tmp->this->value));
+                            sprintf(tompon,"%s%f",tompon,f);
+                        }
                         else {
-                            strcat(tompon,"\"");
-                             strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
-                            strcat(tompon,"\"");
+                           strcat(tompon,"\"");
+                            strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
+                           strcat(tompon,"\"");
                         }
                 
                  }
@@ -135,8 +137,11 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                 {strcat(tompon,tmp->this->value);}
                 if(tmp)
             tmp = tmp->svt; 
-    }
-
-    strcpy(resultat,calculerExpressionNv1(tompon,resultat));
+    } //----> while grnad
+    
+    char xxx[10000];
+    strcpy(xxx,"");
+    strcpy(resultat,calculerExpressionNv1(tompon,xxx));
+   
     return resultat;
 }
