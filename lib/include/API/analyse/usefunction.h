@@ -35,7 +35,8 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
      Env envi1;
      envi1.allv = myvr;
      envi1.allf = envi->allf;
-     strcpy(bakibi,Evalutor(tres,&envi1,bakibi,output));
+     char mm[10000]="";
+     strcpy(bakibi,Evalutor(tres,&envi1,mm,output));
     return bakibi;
 }// fin de la fonction 
 
