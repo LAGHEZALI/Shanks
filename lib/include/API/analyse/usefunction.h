@@ -13,13 +13,14 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
        
      
        AllVariable *tmp = fct->allv;
+       Parametre *pp = p;
 
     AllVariable *myvr = NULL;// la nouvelle liste de variable 
     while(tmp)
     { 
-        fct->allv = AllVariable_modifier(fct->allv,tmp->v->nom,p->valeur);
+        fct->allv = AllVariable_modifier(fct->allv,tmp->v->nom,pp->valeur);
         myvr = AllVariable_ajouter(myvr,tmp->v);
-        p = p->svt;// le parametre suivant
+        pp = pp->svt;// le parametre suivant
         tmp = tmp->svt;// la variable suivant 
     }
     AllVariable *tmp1 = envi->allv;
@@ -32,11 +33,12 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
     Tokens *toks = Lexer(fct->content);
     Trees *tres = Parser(toks);
     
-     Env envi1;
-     envi1.allv = myvr;
-     envi1.allf = envi->allf;
+     Env *envi1 = NULL;
+     envi1 = (Env *) malloc(sizeof(Env));
+     envi1->allv = myvr;
+     envi1->allf = envi->allf;
      char mm[10000]="";
-   Evalutor(tres,envi,bakibi,output);
+   envi1 =  Evalutor(tres,envi1,bakibi,output);
     return bakibi;
 }// fin de la fonction 
 
