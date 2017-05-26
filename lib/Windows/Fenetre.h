@@ -70,8 +70,6 @@ Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
     else 
         f->this = gtk_window_new(GTK_WINDOW_POPUP);
 
-    gtk_window_set_decorated (GTK_WINDOW(f->this),FALSE);
-        
     Container *c = new_Box(VERTICAL,0,FALSE);
     f = Fenetre_setContainer(f,c);
     f = Fenetre_setTaille(f,t);
