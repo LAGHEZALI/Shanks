@@ -61,6 +61,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
 { 
 
     
+
     int e = 0;
      if(strcmp(name,"creerFenetre") == 0 && n == 1)
     {
@@ -120,7 +121,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
         Container *c =Fenetre_getContainer(v->val->fen);
           int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
         int  y = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
-        Component *cpn = new_Label(calculerExpressionNv1(p->valeur,tm),0,1);
+        Component *cpn = new_Label(calculerExpressionNv1(p->valeur,tm),0,0);
         Fixed_add(c,cpn->this,x,y);
          return " \"vous avez ajouter une label.\" ";
     }
@@ -186,6 +187,9 @@ char *AllFonction_utiliser(AllFonction *allf,char *name,int n,Parametre *p,Env *
 /*   utilisation des fenetre */
 char *Methode_utiliser(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,Env *envi,char *bakibi)
 {
+
+    if(v == NULL)
+        return "\"cette variable n est pas encore declare .\"";
     int type = v->type;
 
     if(type  == 5)

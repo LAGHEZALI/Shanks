@@ -355,7 +355,7 @@ void interfaceDialog_textview(GtkWidget *widget,gpointer data)
         const gchar *x = gtk_entry_get_text(GTK_ENTRY(posXVal));
         const gchar *y = gtk_entry_get_text(GTK_ENTRY(posYVal));
        
-        gchar *fullCode = g_strconcat( "globale.ajouterTextview(\"",titre,"\",",tx,"\",",ty,"\",",x,"\",",y,"\",",");globale.actualiser();", NULL);
+        gchar *fullCode = g_strconcat( "globale.ajouterTextview(\"",titre,"\",",tx,",",ty,",",x,",",y,");globale.actualiser();", NULL);
         
         char m[10000];
         FILE *output = fopen("lib/include/TEST/out","w+");
