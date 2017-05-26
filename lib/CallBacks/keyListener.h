@@ -230,7 +230,7 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                      //retourner la cmd saisie
                     g_print("\ncmd@complete> %s\n",all->cmd_encours);
                     //Commande *cmd =  Space_compile(all->sp_inter,all->cmd_encours);
-
+                    
 
                     //  Affichage du resultat
                     if( /*(int)strlen(cmd->warnings)!=0 || (int)strlen(cmd->output)!=0 ||
