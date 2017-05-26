@@ -66,7 +66,7 @@ void interfaceDialog_fenetre(GtkWidget *widget,gpointer data)
         fclose(output);
         char *azz = readFromFile("lib/include/TEST/out",azz);
 
-
+        gtk_widget_destroy (dialog);
     }
     else
         gtk_widget_destroy (dialog);
