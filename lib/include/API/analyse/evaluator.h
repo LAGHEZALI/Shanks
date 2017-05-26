@@ -74,7 +74,7 @@ Env  *gerer_declaration(Tokens *toks,Env *envi)
 
 
 
-
+                                                                                                                 /* */
 
 
 /*cette fonction prend les element de Trees et il l evalue */
@@ -272,7 +272,7 @@ const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
  /*la cas d une condition */
          if(tmp->type == BOUCLE)
          { 
-            
+            printf("boucle \n"); 
             Tokens *tmp1 = tmp->toks;
             Tokens *condition = NULL;
             Tokens *execution = NULL;
@@ -385,7 +385,7 @@ const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
              Fonction *fct = new_Fonction(type,nom_fonction,lv,content_f);
              envi->allf = AllFonction_add(envi->allf,fct);
              tmp1 = tmp1->svt;//-->}
-             printf("%s %d-> %s\n",nom_fonction,nbr,content_f);
+            
          }
 
         tmp = tmp->svt;//it suivantes
