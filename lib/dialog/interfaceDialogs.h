@@ -58,7 +58,7 @@ void interfaceDialog_fenetre(GtkWidget *widget,gpointer data)
        
         gchar *fullCode = g_strconcat( "Fenetre globale;globale.creerFenetre(\"",titre,"\",",lon,",",lar,");globale.montrer();", NULL);
         
-        char m[10000];// la chaine qu on va afficher
+        char m[10000];
         FILE *output = fopen("lib/include/TEST/out","w+");
         Tokens *toks = Lexer(fullCode);
         Trees    *trs   = Parser(toks);
