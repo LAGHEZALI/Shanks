@@ -124,19 +124,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
         Fixed_add(c,cpn->this,x,y);
          return " \"vous avez ajouter une label.\" ";
     }
-     else if(strcmp(name,"ajouterEntry") == 0 && n == 3)
-    {
-        if(v->val->fen == NULL)
-            return " \"la fenetre n'est pas encore creer .\" ";
-         char tm[1000]; 
-        Container *c =Fenetre_getContainer(v->val->fen);
-          int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
-        int  y = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
-        Component *cpn = new_Entry(calculerExpressionNv1(p->valeur,tm));
-        Fixed_add(c,cpn->this,x,y);
-         return " \"vous avez ajouter un entry.\" ";
-    }
-    else if(strcmp(name,"ajouterText") == 0 && n == 2)
+     else if(strcmp(name,"ajouterEntry") == 0 && n == 2)
     {
         if(v->val->fen == NULL)
             return " \"la fenetre n'est pas encore creer .\" ";
@@ -144,8 +132,25 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
         Container *c =Fenetre_getContainer(v->val->fen);
           int x = atoi(calculerExpressionNv1(p->valeur,tm));
         int  y = atoi(calculerExpressionNv1(p->svt->valeur,tm));
-        Component *cpn =new_TextView(1);
+        Component *cpn = new_Entry(NULL);
         Fixed_add(c,cpn->this,x,y);
+         return " \"vous avez ajouter un entry.\" ";
+    }
+    else if(strcmp(name,"ajouterTextview") == 0 && n == 5)
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+         char tm[1000]; 
+        Container *c =Fenetre_getContainer(v->val->fen);
+        int  tx = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+        int  ty = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
+        int  x = atoi(calculerExpressionNv1(p->svt->svt->svt->valeur,tm));
+        int  y = atoi(calculerExpressionNv1(p->svt->svt->svt->svt->valeur,tm));
+        Component *cpn =new_TextView(1);
+        gtk_widget_set_size_request (cpn->this,tx, ty);
+        Container *tmp = new_Frame(calculerExpressionNv1(p->valeur,tm),10);
+        tmp = Frame_add(tmp,cpn->this);
+        Fixed_add(c,tmp->this,x,y);
          return " \"vous avez ajouter un textView.\" ";
     }
 

@@ -33,6 +33,10 @@ Container* left_body(All *all)
 
     //  SIGNAUX
     g_signal_connect(G_OBJECT(iterface_fenetre->this), "clicked", G_CALLBACK(interfaceDialog_fenetre), all);
+    g_signal_connect(G_OBJECT(iterface_bouton->this), "clicked", G_CALLBACK(interfaceDialog_bouton), all);
+    g_signal_connect(G_OBJECT(iterface_input->this), "clicked", G_CALLBACK(interfaceDialog_input), all);
+    g_signal_connect(G_OBJECT(iterface_label->this), "clicked", G_CALLBACK(interfaceDialog_label), all);
+    g_signal_connect(G_OBJECT(iterface_textview->this), "clicked", G_CALLBACK(interfaceDialog_textview), all);
 
     return (left);
 }
