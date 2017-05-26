@@ -100,8 +100,8 @@ const char  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                    
                 }
                 else 
-                   { printf("affichage---> %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
-                       fprintf(output,"%s %s\n",tmp->toks->this->value,calculerExpressionNv0(tmp->toks,envi,res,output));}
+                   { 
+                       fprintf(output," %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));}
                     /*affichage*/
                    
                     /*affichage*/
