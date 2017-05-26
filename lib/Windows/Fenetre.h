@@ -49,8 +49,7 @@ Fenetre *new_Fenetre(const char *titre,int type,Taille *t,int position)
 
 
 void quitter(GtkWidget *widget, gpointer data) {
-    gtk_widget_destroy (widget);
-    g_print("quit!!!");
+  gtk_widget_hide (widget);
 }
 Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
 {
@@ -70,6 +69,8 @@ Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
         
     else 
         f->this = gtk_window_new(GTK_WINDOW_POPUP);
+
+    gtk_window_set_decorated (GTK_WINDOW(f->this),FALSE);
         
     Container *c = new_Box(VERTICAL,0,FALSE);
     f = Fenetre_setContainer(f,c);
@@ -78,6 +79,9 @@ Fenetre *new_Fenetre_shanks(const char *titre,int type,Taille *t,int position)
     f = Fenetre_setPosition(f,position);
 
     g_signal_connect (f->this, "destroy",G_CALLBACK (quitter), NULL);
+
+    Fenetre_setVisible(f,1);
+    gtk_widget_hide (f->this);
 
     return (Fenetre *)f;
 }//Fin de la fonction

@@ -80,15 +80,21 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
     {
         if(v->val->fen == NULL)
             return " \"la fenetre n'est pas encore creer .\" ";
-        Fenetre_setVisible(v->val->fen,1);
+        gtk_widget_show_all (v->val->fen->this);
+        return " \"la fenetre est maintenant visible.\" ";
+    }
+    else if(strcmp(name,"actualiser") == 0 && n == 0)
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+        gtk_widget_show_all (v->val->fen->this);
         return " \"la fenetre est maintenant visible.\" ";
     }
     else if(strcmp(name,"bye") == 0 && n == 0)
     {
         if(v->val->fen == NULL)
             return " \"la fenetre n'est pas encore creer .\" ";
-        
-        gtk_widget_destroy (GTK_WIDGET(v->val->fen->this));
+         gtk_widget_hide (v->val->fen->this);
          return " \"la fenetre est maintenant invisible.\" ";
     }
      else if(strcmp(name,"ajouterBoutton") == 0 && n == 3)

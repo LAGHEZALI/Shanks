@@ -229,7 +229,7 @@ void keyListener_releassed(GtkWidget *widget,GdkEventKey *event, gpointer data)
                     all->cmd_encours = g_strconcat(all->cmd_encours, retourner_commande_non_complete(buffer), NULL);
                      //retourner la cmd saisie
                     g_print("\ncmd@complete> %s\n",all->cmd_encours);
-                  
+
                     char m[10000];
                     FILE *output = fopen("lib/include/TEST/out","w+");
                     Tokens *toks = Lexer(all->cmd_encours);
