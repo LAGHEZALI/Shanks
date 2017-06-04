@@ -160,6 +160,7 @@ II- Les Classes et ser Methodes :
                 -sortD(): cette methode permet de trie la liste sous forme descendant . 
                 
                 -size() : cette methode permet d avoir la taille de la liste .
+                
                 -supprimer(indice) : cette methode permet de supprimer un element dans une place entre 1 et size de la liste
 
             
