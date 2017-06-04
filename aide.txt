@@ -1,0 +1,36 @@
+Ceci est un langage simple et utile qui pourra vous aider à apprende la prgrammation .
+I - LE LANGUAGE :
+
+    1- calcul arithmetique:
+        *   pour construire une operation arithmetique ,c 'est simple vous devez l ecrire comme elle est,
+                par exemple :
+                        - 1+1 --> 2.00000       le calcul ici est simple vous avez demander d'additionner
+                        - (1 == 1) --> 1            le 1 en output veut dire que l operation est vrai
+                        - (1 && 1) --> 1         ici on a fait l evaluatin des 2 parametre 1 et 1 => 1
+         *      les operations disponible sont : +,-,*,/,% .
+         *      les operations de comparaison disponible : == et  != .
+         *      les autres operations <,>,<=,>= . 
+
+         2- declaration de variable:
+            *   On a 2 sortes de variables :
+                    -   variable simple : ce genre de variable peut etre evaluer de nombres comme il peut etre
+                        evaluer de chaine de caractere , pour la declarer c est simple utiliser 'var' :
+                            par exemple :
+                                -var x;               ici  on a declarer une variable de nom x;
+                                -var x = 10;      ici on a delcarer une variable de nom x et de valeur 10;
+                                -var x = "hello wolrd";  ici on a delcarer une variable de nom x et de valeur chaine de cara; 
+                    
+                        Remarque : Les variables puet etre utiliser dans les calcules arithmetiques comme n importre quelle nombre .
+                
+                -   variable de Classe : ce genre de variable ne peut pas etre evaluer mais par contre il a des mrthodes pour 
+                    le manipuler ,les types variable qu on a sont : Fenetre, List,Stack,Queue .
+        
+        3-affichage :
+            *   L affichage dans ce langage est tres tres simple , si vous voulez afficher quelque chose vous avez qu'a 
+                l'ecrire tout simplement ,comment ? 
+                    par exemple:
+                        -   1            donc on affiche 1 .
+                        - 1+1          on a vu presedement que c  est calcul arithmetique mais c aussi un affhhage 2 .
+                        -"hello"    ici on va avoir  hello .
+                    
+        

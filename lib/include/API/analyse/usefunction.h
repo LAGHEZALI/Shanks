@@ -39,7 +39,8 @@ char *Fonction_utiliser(Fonction *fct,int n,Parametre *p,AllFonction *allf,Env *
      envi1->allf = envi->allf;
      char mm[10000]="";
    envi1 =  Evalutor(tres,envi1,bakibi,output);
-    return bakibi;
+   strcpy(bakibi,"");
+    return "";
 }// fin de la fonction 
 
 
@@ -259,8 +260,57 @@ char *AllFonction_utiliser(AllFonction *allf,char *name,int n,Parametre *p,Env *
 
         }
 
+        else if(strcmp(name,"aide") == 0 &&  n == 0)
+        {
+            char *tompon1 = readFromFile("aide.txt",tompon1);
+            
+                fprintf(output,"%s\n",tompon1);
+                return "\"\"";
+        }
+
     return " ";
 }//fin de la fonction
+
+
+
+char *methode_Liste(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,Env *envi,char *bakibi)
+{
+
+
+ if(strcmp(name,"insererDevant") == 0 && n == 1)
+    {
+          char tm[1000]; 
+        
+         
+        float  valeur = atof(calculerExpressionNv1(p->valeur,tm));
+        Val *tp = (Val *)malloc(sizeof(Val));
+        tp->value = (char *)malloc(sizeof(char)*strlen(p->valeur));
+        strcpy(tp->value,p->valeur);
+        tp->fen = NULL;
+        tp->svt = v->val;
+        v->val = tp;
+        return " \"l element est bien ajouter a la liste\" ";
+        
+    }
+
+  if(strcmp(name,"montrer") == 0 && n == 0)
+    {
+          char tompon[10000] = "";
+          Val *tmp = v->val;
+          while(tmp)
+          {
+              strcat(tompon,tmp->value);
+              strcat(tompon,"\t");
+              tmp =tmp->svt;
+          }
+          sprintf(bakibi,"\"%s\"",tompon);
+          return bakibi;
+    }
+
+    return " \"Cette fonction n 'existe pas .\" ";;
+}
+
+
 
 
 
@@ -274,7 +324,8 @@ char *Methode_utiliser(Variable *v,char *name,int n,Parametre *p,AllFonction *al
 
     if(type  == 5)
         return methode_Fenetre(v,name,n,p,allf,envi,bakibi);
-
+    if(type == 2)
+        return methode_Liste(v,name,n,p,allf,envi,bakibi);
 
 
 

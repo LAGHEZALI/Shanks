@@ -194,7 +194,9 @@ char *calculerExpressionNv1(char *chaine,char *valeur)
                     strcat(lecteur,c);//sinon on concatenation
             }
            else {
-                if(strcmp(c,"+") == 0 && chaine[i+1] == '\"')
+               if(strcmp(c,"+") == 0 && chaine[i-1] == '\"')
+               continue;
+                if(strcmp(c,"+") == 0 && i+1<taille  && chaine[i+1] == '\"')
                 {
                     strcat(result,calculerExpressionNv2(lecteur,valeur));
                     strcpy(lecteur,"");// on reiniatioalisation
@@ -204,10 +206,12 @@ char *calculerExpressionNv1(char *chaine,char *valeur)
                     
             }//si c est un nombre
     }//fin for
-   
+    
+   strcpy(valeur,"");
     if(e == 0)
         strcat(result,calculerExpressionNv2(lecteur,valeur));
-
+        strcpy(valeur,"");
+      
     strcpy(valeur,result);
     return valeur;
 }//fin de la fonction

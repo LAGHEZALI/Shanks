@@ -1,20 +1,20 @@
-z=2;
-z ;
-var z=2;
-z;
-Fenetre fen1;
-fen1.creerFenetre("fenetre 1",500,200);
-fen1.montrer();
-fen1.bye();
-fen1.ajouterBoutton("new boutton",100,100);
-fen1.montrer();
-fen1.ajouterLabel("new label",200,200);
-fen1.actualiser();
-Fenetre fen2;
-fen2.creerFenetre("sdfsdf");
-fen2.montrer();
-fen2.ajouterBoutton("sdfsd",100,300);
-fen2.actualiser();
-fen2.bye();
-fen1.bye();
-historique();
+1+1
+1+1+1
+var x = 10;
+x;
+x/10
+x*2
+x == 10
+x == 11
+List l;
+List l;
+l.insererDevant(1);
+l.montrer();
+l.insererDevant(1);
+l.montrer();
+List l;
+l.insererDevant(1);
+l.insererDevant(1);
+l.insererDevant(1);
+l.montrer();
+aide();

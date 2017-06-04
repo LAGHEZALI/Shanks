@@ -35,37 +35,16 @@ Env  *gerer_declaration(Tokens *toks,Env *envi)
             tmp = tmp->svt;
             
             while(tmp!=NULL && strcmp(tmp->this->value,";")!=0 && strcmp(tmp->this->value,",")!=0)
-            {
-                /*if(tmp->this->tok == NAME && 
-                    (tmp->svt == NULL || (strcmp(tmp->svt->this->value,"(") !=0 && strcmp(tmp->svt->this->value,".") !=0)  )
-                        )// cas of variable
-                    strcat(vvv,AllVariable_valeur(envi->allv,tmp->this->value));
-                else if(tmp->this->tok == NAME && strcmp(tmp->svt->this->value,"(") !=0)
-                {
-                    char nomF[100] = "";
-                    strcpy(nomF,tmp->this->value);
-                    tmp = tmp->svt;//(
-                    tmp = tmp->svt;
-                    int nbr = 0;
-                    Parametre *p = NULL;
-                    while(strcmp(tmp->this->value,")") !=0)
-                    {
-                        tmp = tmp->svt;
-                    }//fin while
-
-                }
-                else 
-                    strcat(vvv,tmp->this->value);*/
-                
+            {   
                 ttt = Tokens_Add(ttt,tmp->this->tok,tmp->this->value);
                 tmp = tmp->svt;
             }
             
             
         }//if
-        //envi->allv = AllVariable_ajouter(envi->allv,new_Variable(type,name,calculerExpressionNv1(vvv,valeur)));
+        
         envi->allv = AllVariable_ajouter(envi->allv,new_Variable(type,name,calculerExpressionNv0(ttt,envi,valeur,NULL)));;
-        printf("declaration ---->%s=%s\n",name,AllVariable_valeur(envi->allv,name));
+        
         if(tmp)
             tmp = tmp->svt;
     }
@@ -74,7 +53,22 @@ Env  *gerer_declaration(Tokens *toks,Env *envi)
 
 
 
-                                                                                                                 /* */
+
+
+
+
+
+                                            /******************************************************************************** */
+
+
+
+
+
+
+
+
+
+
 
 
 /*cette fonction prend les element de Trees et il l evalue */
@@ -95,16 +89,21 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                 Tokens *tmp1= tmp->toks;
                 if(tmp1->this->tok == NAME && tmp1->svt && tmp1->svt->this->tok == EQUA) // le cas d affectation
                 {   
-                     printf("affecation---> %s \n",calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
+                    
+                  //   printf("affecation---> %s \n",calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
                      strcpy(res,"");
-                     envi->allv = AllVariable_modifier(envi->allv,tmp1->this->value,calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
+                     char asser[10000] = "";
+                     strcpy(asser,calculerExpressionNv0(tmp1->svt->svt,envi,res,output));
+                     envi->allv = AllVariable_modifier(envi->allv,tmp1->this->value,asser);
                    
                 }
                 else 
                    { 
                        strcpy(res,"");
-                       printf(" %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
-                       fprintf(output," %s\n",calculerExpressionNv0(tmp->toks,envi,res,output));}
+                     
+                       
+                       fprintf(output,"%s\n",calculerExpressionNv0(tmp->toks,envi,res,output));
+                       }
                     /*affichage*/
                    
                     /*affichage*/
@@ -269,7 +268,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
  /*la cas d une condition */
          if(tmp->type == BOUCLE)
          { 
-            printf("boucle \n"); 
+            
             Tokens *tmp1 = tmp->toks;
             Tokens *condition = NULL;
             Tokens *execution = NULL;
@@ -287,12 +286,9 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
             char res[1000]="";
             strcpy(res,calculerExpressionNv0(condition,envi,res,output));
             strcat(res,">=1");
-            strcpy(res,calculerExpressionNv1(res,res));
+            strcpy(res,calculerExpressionNv1(res,ab));
             
-            while(strcmp(res,"1") == 0)
-                {    
-                    printf("condition : %s --->\n",res);
-                    tmp1 = reap;
+            
                      etat_condition = 0;//ca veut dire que la condtion est executer
                     if(strcmp(tmp1->this->value,"{") == 0)
                         {   
@@ -300,28 +296,33 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
                             while(tmp1)
                             {
                                 if(strcmp(tmp1->this->value,"}") == 0)
-                                     { tmp1 = tmp1->svt;break;}
+                                     { break;}
                                     execution = Tokens_Add(execution,tmp1->this->tok,tmp1->this->value);
                                 tmp1 = tmp1->svt;
                             }
-                            Trees *trees = Parser(execution);
-                            envi = Evalutor(trees,envi,bakibi,output);
                         }
                         else 
                         {
                              while(tmp1)
                             {
+                                    
+                                    execution = Tokens_Add(execution,tmp1->this->tok,tmp1->this->value);
                                      if(strcmp(tmp1->this->value,";") == 0)
                                         break;
-                                    execution = Tokens_Add(execution,tmp1->this->tok,tmp1->this->value);
                                 tmp1 = tmp1->svt;
                             }
+
+                        }
+                     while(strcmp(res,"1") == 0)
+                {    
+                    
+                    tmp1 = reap;
                             // execution du coeur de la boucle 
                             Trees *trees = Parser(execution);
                             envi = Evalutor(trees,envi,bakibi,output);
                           
                           
-                        }
+                        
                         //reprendre la boucle
                         char xxx[1000];
                         strcpy(xxx,"");strcpy(res,"");
@@ -336,7 +337,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
       
          else if(tmp->type == TRETURN)
          {
-            strcpy(bakibi, calculerExpressionNv0(tmp->toks->svt,envi,bakibi,output));
+            //strcpy(bakibi, calculerExpressionNv0(tmp->toks->svt,envi,bakibi,output));
              return envi;
          }
 
@@ -388,7 +389,7 @@ Env  *Evalutor(Trees *trs ,Env *envi,char  *bakibi, FILE *output)
              tmp1 = tmp1->svt;//-->}
             
          }
-
+         if(tmp)
         tmp = tmp->svt;//it suivantes
     }//fin while
     return envi;

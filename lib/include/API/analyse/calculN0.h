@@ -6,7 +6,7 @@
 char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *output)
 {
      strcpy(resultat,"");
-     char tompon[5000] = " ";
+     char tompon[5000] = "";
     Tokens *tmp = toks;
     while(tmp)
     {      
@@ -15,6 +15,9 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                 tmp = tmp->svt;
                 if(!tmp) break;
             }
+
+
+            ///////////////////////////////////////////////////////////////////////////
             if(tmp->this->tok == NAME && 
                     (tmp->svt == NULL || (strcmp(tmp->svt->this->value,"(") !=0 && strcmp(tmp->svt->this->value,".") !=0)  
               )  )// cas of variable
@@ -22,21 +25,23 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                         /*verification   */
                       
 
-
+                       
                         /* fin verification*/
                      if(estNombre(AllVariable_valeur(envi->allv,tmp->this->value)))
                         {   
                             float f = atof(AllVariable_valeur(envi->allv,tmp->this->value));
+                          
                             sprintf(tompon,"%s%f",tompon,f);
                         }
                         else {
+                       
                            strcat(tompon,"\"");
                             strcat(tompon,AllVariable_valeur(envi->allv,tmp->this->value));
                            strcat(tompon,"\"");
                         }
                 
                  }
-                 
+                ///////////////////////////////////////////////////////////////////////////////////////////// 
              else if(tmp->this->tok == NAME && strcmp(tmp->svt->this->value,"(") ==0)
              {//cas dune fonction normale
                   char nomF[100] = "";
@@ -77,11 +82,12 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                                 tmp = tmp->svt;
                         e++;
                   }//fin while
-                    printf("--->%s %d \n",nomF,nbr);
-                    strcat(tompon,AllFonction_utiliser(envi->allf,nomF,nbr,p,envi,tompon,output));
+                    char tompon1[100000]="";
+                    AllFonction_utiliser(envi->allf,nomF,nbr,p,envi,tompon1,output);
                     
                     
              }//end if function
+             ////////////////////////////////////////////////////////////
              else if (tmp->this->tok == NAME && strcmp(tmp->svt->this->value,".") ==0)
              {
                     char nameV[100] = "";strcpy(nameV,tmp->this->value);
@@ -115,7 +121,7 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                         {   
                              if(e !=0) nbr++;
                             p = Parametre_ajouter(p,calculerExpressionNv0( tks ,envi, resultat,output));
-                            printf("---------------------------->%s",calculerExpressionNv0( tks ,envi, resultat,output));
+                           
                             if(tks)
                                 free(tks);
                             tks = NULL;
@@ -128,20 +134,26 @@ char *calculerExpressionNv0(Tokens *toks ,Env *envi, char *resultat, FILE *outpu
                                 tmp = tmp->svt;
                         e++;
                   }//fin while
-                    printf("---> %s %s %d \n",nameV,nomF,nbr);
-                    strcat(tompon,Methode_utiliser(AllVariable_trouve(envi->allv,nameV),nomF,nbr,p,envi->allf,envi,tompon));
+                   char tompon1[10000];
+                    strcat(tompon,Methode_utiliser(AllVariable_trouve(envi->allv,nameV),nomF,nbr,p,envi->allf,envi,tompon1));
                     // on est ici à la fin de la fonction 
-                    printf("---> %s %s %d \n",nameV,nomF,nbr);
+                  
+                  
              }//end if method
              else 
-                {strcat(tompon,tmp->this->value);}
+                {
+                    strcat(tompon,tmp->this->value);
+               
+                 
+                }
                 if(tmp)
             tmp = tmp->svt; 
+            else 
+            break;
     } //----> while grnad
-    
+    strcpy(resultat,"");
     char xxx[10000];
-    strcpy(xxx,"");
-    strcpy(resultat,calculerExpressionNv1(tompon,xxx));
+    strcpy(resultat,calculerExpressionNv1(tompon,resultat));
    
     return resultat;
 }

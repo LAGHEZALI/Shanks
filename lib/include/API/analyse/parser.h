@@ -207,7 +207,7 @@ Trees *Parser(Tokens *toks)
 
 
     /*  AFFICHAGE   */
-    Trees *qq = trs;
+ /*   Trees *qq = trs;
     while(qq)
     {
          Tokens *qq1 = qq->toks;
@@ -218,6 +218,6 @@ Trees *Parser(Tokens *toks)
     }
     printf("\n");//affichage
         qq = qq->svt;
-    }
+    }*/
 return trs;
 }//fin fonction
