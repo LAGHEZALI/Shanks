@@ -298,7 +298,31 @@ char *methode_Liste(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,
         tp->fen = NULL;
         tp->svt = v->val;
         v->val = tp;
-        return " \"l element est bien ajouter a la liste\" ";
+        return " \"l element est bien ajouter a la liste devant .\" ";
+        
+    }
+
+    if(strcmp(name,"insererDerriere") == 0 && n == 1)
+    {
+          char tm[1000]; 
+        
+         
+        float  valeur = atof(calculerExpressionNv1(p->valeur,tm));
+        Val *tp = (Val *)malloc(sizeof(Val));
+        tp->value = (char *)malloc(sizeof(char)*strlen(p->valeur));
+        strcpy(tp->value,p->valeur);
+        tp->fen = NULL;
+        tp->svt = NULL;
+        if(v->val == NULL)
+            v->val = tp;
+        else {
+            Val *tmp =  v->val;
+            while(tmp->svt)
+                tmp = tmp->svt;
+            tmp->svt = tp;
+        }
+        
+        return " \"l element est bien ajouter a la liste derriere .\" ";
         
     }
 
