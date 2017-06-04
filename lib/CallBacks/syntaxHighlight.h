@@ -3,7 +3,7 @@
 void syntaxHighlight_keyWords_editor(GtkTextBuffer *buffer)
 {
     //  Liste des mots clés
-    gchar *keys[]={"int","str","float","var","if","for","else"};
+    gchar *keys[]={"string","var","if","else","elseif","while","function","Fenetre","List","Stack"};
 
     GtkTextIter start_find, end_find;
     GtkTextIter start_match, end_match;
@@ -16,7 +16,7 @@ void syntaxHighlight_keyWords_editor(GtkTextBuffer *buffer)
     gtk_text_buffer_remove_tag_by_name(buffer, "blue_fg", &start_find, &end_find);
 
     //  parcours de des mots clés et recherches de ces occurences, si existe on colorifie
-    for(int i=0;i<7;i++)
+    for(int i=0;i<10;i++)
     {
         while (gtk_text_iter_forward_search(&start_find, keys[i], 
                     GTK_TEXT_SEARCH_TEXT_ONLY | GTK_TEXT_SEARCH_VISIBLE_ONLY, 

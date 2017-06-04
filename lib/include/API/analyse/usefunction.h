@@ -165,7 +165,16 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
 
 
 
+char *methode_List(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,Env *envi,char *bakibi) 
+{
 
+    if(strcmp(name,"add") == 0 &&  n == 1)
+    {
+        
+    }
+
+    return("\"Erreur ! Cette Fonction n'existe pas\"");
+}
 
 
 
@@ -324,10 +333,9 @@ char *Methode_utiliser(Variable *v,char *name,int n,Parametre *p,AllFonction *al
 
     if(type  == 5)
         return methode_Fenetre(v,name,n,p,allf,envi,bakibi);
+
     if(type == 2)
         return methode_Liste(v,name,n,p,allf,envi,bakibi);
-
-
 
     return " ";
 }
