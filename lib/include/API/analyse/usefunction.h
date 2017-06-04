@@ -326,7 +326,7 @@ char *methode_Liste(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,
         
     }
 
-  if(strcmp(name,"montrer") == 0 && n == 0)
+  else if(strcmp(name,"montrer") == 0 && n == 0)
     {
           char tompon[10000] = "";
           Val *tmp = v->val;
@@ -338,6 +338,121 @@ char *methode_Liste(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,
           }
           sprintf(bakibi,"\"%s\"",tompon);
           return bakibi;
+    }
+    if(strcmp(name,"element") == 0 && n == 1)
+    {
+        char tm[10000]="";
+        int  in = atoi(calculerExpressionNv1(p->valeur,tm));
+          char tompon[10000] = "";
+          Val *tmp = v->val;
+          int i = 1;
+          while(tmp)
+          {  
+              if( i == in)
+              {
+                   sprintf(bakibi,"\"%s\"",tmp->value);
+                   return bakibi;
+              }
+              i++;
+              tmp =tmp->svt;
+          }
+          sprintf(bakibi,"\"erreur : l indice n existe pas .\"");
+          return bakibi;
+    }
+    else if(strcmp(name,"size") == 0 && n == 0)
+    {
+          char tompon[10000] = "";
+          Val *tmp = v->val;
+          char i = -1;
+          while(tmp)
+          {
+                i++;
+              tmp =tmp->svt;
+          }
+          sprintf(bakibi,"\"%d\"",i);
+          return bakibi;
+    }
+
+    else if(strcmp(name,"sort") == 0 && n == 0)
+    {
+          char tompon[1000] = "";
+          Val *tmp = v->val;
+          Val *tmp1 = NULL;
+          while(tmp)
+          {
+              tmp1 = tmp->svt;
+               while(tmp1)
+               {
+                   if(atof(tmp->value)>atof(tmp1->value))
+                   {
+                       strcpy(tompon,tmp->value);
+                       strcpy(tmp->value,tmp1->value);
+                       strcpy(tmp1->value,tompon);
+                   }
+                   tmp1 = tmp1->svt;
+               }
+              tmp =tmp->svt;
+          }
+       
+          return "\"\"";
+    }
+    else if(strcmp(name,"sortD") == 0 && n == 0)
+    {
+          char tompon[1000] = "";
+          Val *tmp = v->val;
+          Val *tmp1 = NULL;
+          while(tmp)
+          {
+              tmp1 = tmp->svt;
+               while(tmp1)
+               {
+                   if(atof(tmp->value)< atof(tmp1->value))
+                   {
+                       strcpy(tompon,tmp->value);
+                       strcpy(tmp->value,tmp1->value);
+                       strcpy(tmp1->value,tompon);
+                   }
+                   tmp1 = tmp1->svt;
+               }
+              tmp =tmp->svt;
+          }
+       
+          return "\"\"";
+    }
+     else if(strcmp(name,"supprimer") == 0 && n ==1)
+    {
+          char tompon[10000] = "";
+          char tm[1000] = "";
+           int  in = atoi(calculerExpressionNv1(p->valeur,tm));
+          
+          char i = 1;
+          if(v->val == NULL)
+            return "\"Erreur La liste est Vide \"";
+            if(in == 1)
+            {
+                Val *e = v->val;
+                v->val = v->val->svt;
+                free(e);
+                return "\"\"";
+            }
+            Val *tmp1 = v->val->svt;
+            Val *tmp = v->val;
+          while(tmp1)
+          {
+               i++;
+              if(i == in)
+              {
+                    Val *e = tmp1;
+                    tmp->svt = tmp1->svt;
+                    free(e);
+                    return "\"\"";
+              }
+               
+              tmp =tmp->svt;
+              tmp1 = tmp1->svt;
+          }
+          
+        return "\"Erreur L indice est errone  \"";
     }
 
     return " \"Cette fonction n 'existe pas .\" ";;
