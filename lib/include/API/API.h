@@ -38,9 +38,9 @@ char* utf8(char *chaine)
 #include "Components/Button.h"
 #include "Components/TextView.h"*/
 #include "Components/Entry.h"
-/*#include "Components/ComboBox.h"
+#include "Components/ComboBox.h"
 #include "Components/CheckBox.h"
-#include "Components/Radio.h"*/
+#include "Components/Radio.h"
 
 
 #include "outils/outils.h"

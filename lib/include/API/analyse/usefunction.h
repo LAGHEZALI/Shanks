@@ -104,7 +104,7 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
          gtk_widget_hide (v->val->fen->this);
          return " \"la fenetre est maintenant invisible.\" ";
     }
-     else if(strcmp(name,"ajouterBoutton") == 0 && n == 3)
+     else if(strcmp(name,"ajouterBouton") == 0 && n == 3)
     {
         if(v->val->fen == NULL)
             return " \"la fenetre n'est pas encore creer .\" ";
@@ -122,13 +122,13 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
             return " \"la fenetre n'est pas encore creer .\" ";
          char tm[1000]; 
         Container *c =Fenetre_getContainer(v->val->fen);
-          int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+        int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
         int  y = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
         Component *cpn = new_Label(calculerExpressionNv1(p->valeur,tm),0,0);
         Fixed_add(c,cpn->this,x,y);
          return " \"vous avez ajouter une label.\" ";
     }
-     else if(strcmp(name,"ajouterEntry") == 0 && n == 2)
+    else if(strcmp(name,"ajouterEntry") == 0 && n == 2)
     {
         if(v->val->fen == NULL)
             return " \"la fenetre n'est pas encore creer .\" ";
@@ -157,6 +157,127 @@ char *methode_Fenetre(Variable *v,char *name,int n,Parametre *p,AllFonction *all
         Fixed_add(c,tmp->this,x,y);
          return " \"vous avez ajouter un textView.\" ";
     }
+    else if(strcmp(name,"ajouterCheckbox") == 0 && n == 3)
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+         char tm[1000]; 
+        Container *c =Fenetre_getContainer(v->val->fen);
+        int x = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+        int  y = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
+        Component *cpn = new_CheckBox(calculerExpressionNv1(p->valeur,tm));
+        Fixed_add(c,cpn->this,x,y);
+         return " \"vous avez ajouter un CheckBox.\" ";
+    }
+    else if(strcmp(name,"ajouterCombo") == 0 && n >= 3 )
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+         char tm[1000]; 
+        Container *c =Fenetre_getContainer(v->val->fen);
+        int x = atoi(calculerExpressionNv1(p->valeur,tm));
+        int y = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+
+        Parametre *pp=p->svt->svt;
+
+        Component *cp = new_Component();
+        cp->type = COMBOBOX;
+        cp->this = gtk_combo_box_text_new ();
+
+        while(pp){
+            gtk_combo_box_text_append_text( GTK_COMBO_BOX_TEXT(cp->this) , calculerExpressionNv1(pp->valeur,tm) );
+            pp = pp->svt;
+        }
+
+        gtk_combo_box_set_active(GTK_COMBO_BOX(cp->this),0);
+
+        Fixed_add(c,cp->this,x,y); 
+
+         return " \"vous avez ajouter un ComboBox.\" ";
+    }
+    else if(strcmp(name,"ajouterRadios") == 0 && n >= 4 )
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+        char tm[1000]; 
+        Container *c =Fenetre_getContainer(v->val->fen);
+        int x = atoi(calculerExpressionNv1(p->valeur,tm));
+        int y = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+        int orientation = atoi(calculerExpressionNv1(p->svt->svt->valeur,tm));
+
+        GtkWidget *box,*first;
+        if(orientation==0)
+            box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 2);
+        else
+            box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
+
+        gtk_box_set_homogeneous (GTK_BOX (box), TRUE);
+
+        first = gtk_radio_button_new_with_label (NULL,calculerExpressionNv1(p->svt->svt->svt->valeur,tm));
+        gtk_box_pack_start (GTK_BOX (box), first, TRUE, TRUE, 2);
+
+        Parametre *pp = p->svt->svt->svt->svt;
+
+        while(pp){
+            GtkWidget *radTmp = gtk_radio_button_new_with_label_from_widget (
+                                                GTK_RADIO_BUTTON (first),
+                                                calculerExpressionNv1(pp->valeur,tm)    
+                                    );
+            gtk_box_pack_start (GTK_BOX (box), radTmp, TRUE, TRUE, 2);
+
+            pp = pp->svt;
+        }
+
+        Fixed_add(c,box,x,y); 
+
+         return " \"vous avez ajouter un/des Radio Bouton(s) .\" ";
+    }
+    else if(strcmp(name,"ajouterMenu") == 0 && n >= 3 )
+    {
+        if(v->val->fen == NULL)
+            return " \"la fenetre n'est pas encore creer .\" ";
+        char tm[1000]; 
+        Container *c =Fenetre_getContainer(v->val->fen);
+        int x = atoi(calculerExpressionNv1(p->valeur,tm));
+        int y = atoi(calculerExpressionNv1(p->svt->valeur,tm));
+
+        GtkWidget *menuBar  =   gtk_menu_bar_new();
+        GtkWidget *menu,*first ,*item;
+
+        Parametre *pp = p->svt->svt;
+        int fst=0;
+
+        while(pp){
+
+            fst=0;
+            menu  =   gtk_menu_new();
+
+            char * pch;
+            pch = strtok (calculerExpressionNv1(pp->valeur,tm),",");
+
+            while (pch != NULL)
+            {
+                if(fst==0){
+                    first = gtk_menu_item_new_with_label(pch);   
+                    gtk_menu_item_set_submenu(GTK_MENU_ITEM(first),menu);
+                    fst=1;
+                }
+                else{
+                    item = gtk_menu_item_new_with_label(pch);  
+                    gtk_menu_shell_append(GTK_MENU_SHELL(menu),item); 
+                }
+                pch = strtok (NULL, ",");
+            }
+            
+            gtk_menu_shell_append(GTK_MENU_SHELL(menuBar),first);
+        
+            pp = pp->svt;
+        }
+
+        Fixed_add(c,menuBar,x,y); 
+
+         return " \"vous avez ajouter un Menu .\" ";
+    }
 
     return "\"cette fonction n'est pas encore disponible\"";
 }// fin fonction
@@ -175,7 +296,6 @@ char *methode_List(Variable *v,char *name,int n,Parametre *p,AllFonction *allf,E
 
     return("\"Erreur ! Cette Fonction n'existe pas\"");
 }
-
 
 
 

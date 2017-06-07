@@ -1,4 +1,4 @@
-Component *new_CheckBox(const char *label)
+Component* new_CheckBox(const char *label)
 {
     Component *cp = new_Component();
     cp->type = CHECKBOX;

@@ -1,0 +1,13 @@
+Fenetre fen;
+
+fen.creerFenetre("ILISI",600,600);
+
+fen.ajouterMenu(100,100,"File,New,Open","Tools,Edit,Settings","Quit");
+
+fen.ajouterCheckbox("AngularJS",100,200);
+fen.ajouterCheckbox("VueJS",200,200);
+fen.ajouterCheckbox("reactJS",300,200);
+fen.ajouterCombo(200,300,"ilisi","souhail","reda","fst");
+fen.ajouterRadios(200,400,0,"Homme","Femme");
+
+fen.montrer();

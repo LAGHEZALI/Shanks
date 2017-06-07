@@ -1,4 +1,4 @@
-Component *new_Combo_Box_tab(gchar *tab[],int taille, int active)
+Component *new_Combo_Box_tab(gchar **tab,int taille, int active)
 {
     Component *cp = new_Component();
     cp->type = COMBOBOX;
