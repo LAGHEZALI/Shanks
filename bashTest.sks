@@ -1,13 +1,40 @@
 Fenetre fen;
 
-fen.creerFenetre("ILISI",600,600);
+fen.creerFenetre("Formulaire",400,610);
 
-fen.ajouterMenu(100,100,"File,New,Open","Tools,Edit,Settings","Quit");
+fen.ajouterMenu(0,0,"File,New,Open","Tools,Edit,Settings","Quit");
 
-fen.ajouterCheckbox("AngularJS",100,200);
-fen.ajouterCheckbox("VueJS",200,200);
-fen.ajouterCheckbox("reactJS",300,200);
-fen.ajouterCombo(200,300,"ilisi","souhail","reda","fst");
-fen.ajouterRadios(200,400,0,"Homme","Femme");
+fen.ajouterLabel("INSCRIPTION FST MOHEMMEDIA",85,40);
+
+fen.ajouterLabel("Nom",80,100);
+fen.ajouterEntry(150,95);
+
+fen.ajouterLabel("Prenom",80,140);
+fen.ajouterEntry(150,135);
+
+fen.ajouterLabel("CNE",80,180);
+fen.ajouterEntry(150,175);
+
+fen.ajouterLabel("CIN",80,220);
+fen.ajouterEntry(150,215);
+
+fen.ajouterTextview("Adresse",200,100,90,250);
+
+fen.ajouterLabel("Sexe : ",100,400);
+fen.ajouterRadios(150,400,1,"Homme","Femme");
+
+fen.ajouterLabel("Filiere ",150,440);
+fen.ajouterCombo(200,433,"ILISI","GMI","GET","GEM");
+
+fen.ajouterLabel("Diplome ",30,480);
+fen.ajouterCheckbox("DEUG",110,480);
+fen.ajouterCheckbox("DEUST",200,480);
+fen.ajouterCheckbox("DUT",280,480);
+fen.ajouterCheckbox("LICENCE",110,520);
+fen.ajouterCheckbox("MASTER",200,520);
+fen.ajouterCheckbox("DOCTORAT",280,520);
+
+fen.ajouterBouton("Annuler",100,560);
+fen.ajouterBouton("Envoyer",230,560);
 
 fen.montrer();
